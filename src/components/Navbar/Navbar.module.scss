@@ -1,0 +1,53 @@
+@import '../../styles/global.scss';
+@import '../../styles/settings.scss';
+
+.navbar {
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  padding: 0 3rem;
+  background-color: darken($color-dark, 3%);
+  @media (max-width: 500px) {
+    padding: 0 1rem;
+  }
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__menu {
+    display: inline-block;
+    width: 40%;
+    font-size: $base-size * 1.5;
+    @media (max-width: 900px) {
+      width: 45%;
+      font-size: $base-size * 1.2;
+    }
+    @media (max-width: 650px) {
+      width: 60%;
+      font-size: $base-size * 1.2;
+    }
+    @media (max-width: 500px) {
+      width: 70%;
+      font-size: $base-size * 1.1;
+    }
+  }
+
+  &__items {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  &__item {
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+  }
+  i {
+    font-size: $base-size * 2;
+    color: $color-light;
+  }
+}

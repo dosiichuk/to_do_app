@@ -3,7 +3,6 @@ import Column from '../Column/Column';
 import ColumnForm from '../ColumnForm/ColumnForm';
 import { useSelector } from 'react-redux';
 import { getAllColumns } from '../../redux/store';
-import { get } from 'shortid/lib/alphabet';
 
 const List = () => {
   const columns = useSelector(getAllColumns);

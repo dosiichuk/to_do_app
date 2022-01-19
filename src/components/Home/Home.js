@@ -1,0 +1,17 @@
+import React from 'react';
+import styles from './Home.module.scss';
+import Hero from '../Hero/Hero';
+import SearchForm from '../SearchForm/SearchForm';
+import List from '../List/List';
+
+const Home = (props) => {
+  return (
+    <>
+      <Hero />
+      <SearchForm />
+      <List />
+    </>
+  );
+};
+
+export default Home;
