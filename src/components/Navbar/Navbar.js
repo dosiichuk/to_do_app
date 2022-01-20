@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import styles from './Navbar.module.scss';
 
 const Navbar = (props) => {
@@ -15,13 +15,34 @@ const Navbar = (props) => {
           <div className={styles.navbar__menu}>
             <ul className={styles.navbar__items}>
               <li className={styles.navbar__item}>
-                <Link to="/">Home</Link>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? styles.linkActive : ''
+                  }
+                  to="/"
+                >
+                  Home
+                </NavLink>
               </li>
               <li className={styles.navbar__item}>
-                <Link to="/favorite">Favorite</Link>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? styles.linkActive : ''
+                  }
+                  to="/favorite"
+                >
+                  Favorite
+                </NavLink>
               </li>
               <li className={styles.navbar__item}>
-                <Link to="/about">About</Link>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? styles.linkActive : ''
+                  }
+                  to="/about"
+                >
+                  About
+                </NavLink>
               </li>
             </ul>
           </div>

@@ -4,15 +4,20 @@ import shortid from 'shortid';
 import { strContains } from '../utils/strContains';
 
 //selector funcions (always used to select data, which are later passed to components)
+export const getAllLists = ({ lists }) => lists;
+export const getListById = ({ lists }, listId) =>
+  lists.find((list) => list.id === listId);
 export const getFilteredCards = ({ searchTerm, cards }, columnId) =>
   cards.filter(
     (card) => card.columnId === columnId && strContains(card.title, searchTerm)
   );
-export const getAllColumns = ({ columns }) => columns;
+export const getColumnsByList = ({ columns }, listId) =>
+  columns.filter((column) => column.listId === listId);
 
 //action creators
 export const addColumn = (payload) => ({ type: 'ADD_COLUMN', payload });
 export const addCard = (payload) => ({ type: 'ADD_CARD', payload });
+export const addList = (payload) => ({ type: 'ADD_LIST', payload });
 export const updateSearchTerm = (payload) => ({
   type: 'SET_SEARCH_TERM',
   payload,
@@ -29,6 +34,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         cards: [...state.cards, { id: shortid(), ...action.payload }],
+      };
+    case 'ADD_LIST':
+      return {
+        ...state,
+        lists: [...state.lists, { id: shortid(), ...action.payload }],
       };
     case 'SET_SEARCH_TERM':
       return {
