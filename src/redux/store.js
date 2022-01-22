@@ -13,13 +13,18 @@ export const getFilteredCards = ({ searchTerm, cards }, columnId) =>
   );
 export const getColumnsByList = ({ columns }, listId) =>
   columns.filter((column) => column.listId === listId);
-
+export const getFavoriteCards = ({ cards }) =>
+  cards.filter((card) => card.isFavorite);
 //action creators
 export const addColumn = (payload) => ({ type: 'ADD_COLUMN', payload });
 export const addCard = (payload) => ({ type: 'ADD_CARD', payload });
 export const addList = (payload) => ({ type: 'ADD_LIST', payload });
 export const updateSearchTerm = (payload) => ({
   type: 'SET_SEARCH_TERM',
+  payload,
+});
+export const addToFavorites = (payload) => ({
+  type: 'ADD_TO_FAVORITES',
   payload,
 });
 
@@ -44,6 +49,15 @@ const reducer = (state, action) => {
       return {
         ...state,
         searchTerm: action.payload.searchTerm,
+      };
+    case 'ADD_TO_FAVORITES':
+      return {
+        ...state,
+        cards: state.cards.map((card) =>
+          card.id === action.payload
+            ? { ...card, isFavorite: !card.isFavorite }
+            : card
+        ),
       };
     default:
       return state;
