@@ -5,15 +5,13 @@ import clsx from 'clsx';
 import { useDispatch } from 'react-redux';
 
 import { useSelector } from 'react-redux';
-import { getFilteredCards } from '../../redux/store';
-import { addToFavorites } from '../../redux/store';
+import { getFilteredCards } from '../../redux/cardRedux';
+import { addToFavorites, deleteCard } from '../../redux/cardRedux';
 
 const Column = (props) => {
   const cards = useSelector((state) => getFilteredCards(state, props.id));
   const dispatch = useDispatch();
-  const handleClick = (id) => {
-    dispatch(addToFavorites(id));
-  };
+
   return (
     <article className={styles.column}>
       <h2 className={styles.title}>
@@ -24,14 +22,19 @@ const Column = (props) => {
         {cards.map((card) => (
           <Card key={card.id}>
             {card.title}
-
-            <i
-              className={clsx(
-                `fa fa-star-o`,
-                card.isFavorite && styles.favorite
-              )}
-              onClick={() => handleClick(card.id)}
-            ></i>
+            <span>
+              <i
+                className={clsx(
+                  `fa fa-star-o`,
+                  card.isFavorite && styles.favorite
+                )}
+                onClick={() => dispatch(addToFavorites(card.id))}
+              ></i>
+              <i
+                className="fa fa-trash"
+                onClick={() => dispatch(deleteCard(card.id))}
+              ></i>
+            </span>
           </Card>
         ))}
       </ul>

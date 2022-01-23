@@ -5,7 +5,8 @@ import SearchForm from '../SearchForm/SearchForm';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import { Navigate } from 'react-router-dom';
-import { getColumnsByList, getListById } from '../../redux/store';
+import { getColumnsByList } from '../../redux/columnRedux';
+import { getListById } from '../../redux/listRedux';
 
 const List = () => {
   const { listId } = useParams();
